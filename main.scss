@@ -1,0 +1,215 @@
+@use "SCSS/generic/reset";
+@use "SCSS/settings/colors";
+@use "SCSS/generic/grid";
+@use "SCSS/settings/variables";
+@use "SCSS/settings/mixins";
+
+.calc {
+  padding: 80px 0;
+  background-color: colors.$light-grey-color;
+
+  @include mixins.tablet {
+    padding: 30px 15px;
+  }
+
+  h2 {
+    text-align: center;
+  }
+
+  &__columns {
+    max-width: 865px;
+    margin: 50px auto 0;
+    display: flex;
+
+    @include mixins.tablet {
+      display: block;
+    }
+  }
+
+  &__form {
+    width: 50%;
+    margin-right: 20px;
+
+    @include mixins.tablet {
+      width: 100%;
+      margin-right: 0;
+    }
+  }
+
+
+  &__input input,
+  &__select .select__input {
+    color: colors.$grey-color;
+    width: 100%;
+    border-radius: 6px;
+    border: 1px solid colors.$primary-color;
+    padding: 11px 20px;
+    line-height: 1em;
+    font-size: 0.8125rem;
+    box-shadow: 0px 3px 6px colors.$primary-shadow-color;
+    margin-bottom: 20px;
+    background-color: colors.$white-color;
+  }
+
+  &__input {
+    input {
+      &::placeholder {
+        color: colors.$grey-color;
+      }
+    }
+  }
+
+  &__select {
+    position: relative;
+
+    .select__input {
+      position: relative;
+      height: 40px;
+      vertical-align: middle;
+      padding: 13px 20px;
+      cursor: pointer;
+
+      &::after {
+        content: "";
+        background-image: url("SCSS/assets/arrow-back-circle-outline.svg");
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        transform: rotate(270deg);
+        width: 22px;
+        height: 22px;
+        display: block;
+        position: absolute;
+        right: 14px;
+        top: 9px;
+        }
+      &.rotate::after{
+        transform: rotate(90deg);
+      }
+    }
+
+    .select__dropdown {
+      display: block;
+      position: absolute;
+      z-index: 1;
+      background-color: white;
+      width: 100%;
+      border-radius: 6px;
+      border: 1px solid colors.$redish-color;
+      overflow: hidden;
+
+      li {
+        font-size: 13px;
+        padding: 10px 20px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: colors.$light-grey-color;
+        }
+      }
+    }
+
+
+    &.open {
+      .select__input::after {
+        transform: rotate(180deg);
+      }
+
+      .select__dropdown {
+        display: block;
+      }
+    }
+  }
+    .form__checkbox {
+      cursor: pointer;
+      display: flex;
+      gap: 10px;
+      padding-top: 10px;
+      input{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+      }
+      input:checked + span{
+        background-image: url("SCSS/assets/Checkmark.svg");
+        background-repeat: no-repeat;
+        background-size: 90% 90%;
+        background-position: center;
+
+
+      }
+      span{
+        display: block;
+        width: 20px;
+        height: 20px;
+        border: 2px solid colors.$green-color;
+        border-radius: 5px;
+        &:hover{
+          background-color: lightblue;
+        }
+      }
+      .consent__text {
+        padding-top: 4px;
+        line-height: 12px;
+        display: inline-block;
+      }
+    }
+
+  &__summary {
+    width: 50%;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+
+    @include mixins.tablet {
+      width: 100%;
+      margin-left: 0;
+      margin-top: 30px;
+    }
+
+    .summary__total,
+    .list__item {
+      box-shadow: 0px 3px 6px rgba(0, 0, 0, .16);
+      border-radius: 6px;
+      justify-content: space-between;
+      align-items: center;
+      color: colors.$white-color;
+      font-size: 0.875rem;
+      display: flex;
+
+      &.open {
+        display: flex;
+      }
+    }
+
+    .summary__total {
+      width: 50%;
+      align-self: flex-end;
+      margin-top: 22px;
+      padding: 8px 20px;
+      background-color: colors.$primary-color;
+
+      .total__price {
+        font-size: 1.25rem;
+        font-weight: 700;
+      }
+    }
+
+    .list__item {
+      padding: 6px 20px;
+      background-color: lightgreen;
+      margin-bottom: 8px;
+
+      .item {
+        &__price {
+          font-weight: 700;
+          font-size: 1.125rem;
+        }
+      }
+    }
+  }
+}
+
+
+

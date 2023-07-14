@@ -1,0 +1,29 @@
+@use "../settings/variables";
+
+.container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+  .row{
+    display: flex;
+    flex-wrap: wrap;
+
+    [class*='col-'] {
+      min-height: 1px;
+      padding: 0 variables.$gutters;
+    }
+    @for $i from 1 through variables.$columns {
+      .col-#{$i} {
+        width: variables.$base-column-size * $i;
+      }
+    }
+    @media screen and (min-width: 800px)  {
+      @for $i from 1 through variables.$columns{
+        .col-#{$i}-lg{
+          width: variables.$base-column-size * $i;
+        }
+      }
+    }
+  }
+}
